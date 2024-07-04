@@ -5,19 +5,18 @@ import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.stream.Stream;
 
-public class DiningPhilosopher {
+public class DiningPhilosopher implements UselessInterface {
     private final Random random;
     private final List<Semaphore> mutexes;
     private final int N = 5;
 
-    DiningPhilosopher() {
+    public DiningPhilosopher() {
         this.random = new Random();
 
         this.mutexes = Stream.generate(() -> new Semaphore(1))
                 .limit(N)
                 .toList();
     }
-
 
     public void behave(final int i) {
         try {
